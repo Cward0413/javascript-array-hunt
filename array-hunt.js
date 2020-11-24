@@ -93,44 +93,89 @@ $(document).ready(function () {
         Find the first and last string in the array.
         Output them to td#firstLast
          */
-
+        var firstLast = myArray[0] + " + " + myArray[(myArray.length - 1)];
+        $("#firstLast").text(firstLast);
 
         /*
         Find the first string that contains an 'n'.
         Output it to td#firstEnn
          */
-
+        var i;
+        for(i = 0; i < myArray.length; i++){
+            var word = myArray[i];
+            if(word.includes('n')) {
+                $('#firstEnn').text(word);
+                break;
+            }
+        }
 
         /*
         Find all of the strings with less than 6 characters.
         Output them to td#lessThanSix
          */
+        var string = "";
+        for(i = 0; i < myArray.length; i++){
+            if (myArray[i].length < 6){
+                string += myArray[i] + " + ";
+            }
+        }
+        string = string.slice(0, -3);
+        $('#lessThanSix').text(string);
 
 
         /*
         Find the longest string in the array.
         Output it to td#longName
          */
+        var lString = myArray[0];
 
+        for(i = 0; i < myArray.length; i++){
+            if(myArray[i].length > lString.length){
+                lString = myArray[i];
+            }
+        }
+        $('#longName').text(lString);
 
         /*
         Find all of the strings that do not contain the letter 's'.
         Output them to td#noEss
          */
-
+        var noEss = '';
+        for(i = 0; i < myArray.length; i++) {
+            var check = myArray[i].includes('s');
+            if(check === false){
+                noEss += myArray[i] + ' + ';
+            }
+        }
+        noEss = noEss.slice(0,-3);
+        $('#noEss').text(noEss);
 
         /*
         Output all of the strings, but with all of their vowels
         in uppercase, to td#upperVowels
          */
-
+        var uString = '';
+        for(i = 0; i < myArray.length; i++){
+            var j;
+            var word = myArray[i];
+            for(j=0; j < word.length; j++){
+                word = word.replace('a', 'A');
+                word = word.replace('e', 'E');
+                word = word.replace('i', 'I');
+                word = word.replace('o', 'O');
+                word = word.replace('u', 'U');
+            }
+            uString += word + ' + ';
+        }
+        $('#upperVowels').text(uString);
 
         /*
         Output all of the strings in reverse order and separated by
         ' - ' to td#reverseDash
          */
 
-
+        var reverseArray = myArray.reverse();
+        var rString = reverseArray.join(" - ");
+        $('#reverseDash').text(rString);
     }
-
 });
